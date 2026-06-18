@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crews | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            background-color: #000000;
+            font-family: 'Inter', sans-serif; /* Applied Inter */
+            color: #e0e0e0; overflow: hidden;
+            cursor: pointer; /* Indicates clickability for audio */
+        }
+
+        .container { text-align: center; }
+
+.typing-container {
+    font-size: 3rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 4px solid #fff;
+    width: 0;
+    margin: 0 auto;
+    animation: typing 3s steps(11, end) forwards, blink 0.75s step-end infinite;
+
+    font-family: 'Inter', sans-serif; /* ✅ FORCE INTER */
+}
+
+        .subtext {
+            margin-top: 20px; font-size: 1.2rem; color: #ffffff;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes typing { from { width: 0 } to { width: 11ch; } }
+        @keyframes blink { from, to { border-color: transparent } 50% { border-color: #ffffff; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 600px) {
+            .typing-container { font-size: 2rem; }
+            .subtext { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-audio" loop>
+        <source src="./your-music-file.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ENTER SCREEN -->
+    <div id="enter-screen">
+        click to enter...
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container" id="main-content">
+        <div class="typing-container">hi, im crews</div>
+        <div class="subtext">i code lua-u, have 3+ years of roblox development experience.</div>
+    </div>
+
+    <script>
+        const audio = document.getElementById("bg-audio");
+        const enterScreen = document.getElementById("enter-screen");
+        const mainContent = document.getElementById("main-content");
+
+        mainContent.style.display = "none";
+
+        enterScreen.addEventListener("click", async () => {
+            enterScreen.style.opacity = "0";
+
+            setTimeout(() => {
+                enterScreen.style.display = "none";
+                mainContent.style.display = "block";
+            }, 600);
+
+            try {
+                audio.volume = 0.5;
+                await audio.play();
+            } catch (e) {
+                console.log("Audio blocked:", e);
+            }
+        });
+    </script>
+
+</body>
+</html>
